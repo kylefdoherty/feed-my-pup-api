@@ -1,0 +1,6 @@
+myenv
+devenv
+testenv
+*.pyc
+feed_my_pup/static
+
