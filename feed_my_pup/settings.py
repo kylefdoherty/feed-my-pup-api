@@ -57,6 +57,16 @@ MIDDLEWARE_CLASSES = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+REST_FRAMEWORK = {
+  'DEFAULT_RENDERER_CLASSES': (
+    'djangorestframework_camel_case.render.CamelCaseJSONRenderer', # Any other renders
+  ),
+
+  'DEFAULT_PARSER_CLASSES': (
+    'djangorestframework_camel_case.parser.CamelCaseJSONParser', # Any other parsers
+  ),
+}
+
 ROOT_URLCONF = 'feed_my_pup.urls'
 
 TEMPLATES = [
