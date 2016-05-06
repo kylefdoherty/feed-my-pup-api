@@ -3,4 +3,5 @@ devenv
 testenv
 *.pyc
 feed_my_pup/static
+local_settings.py
 
