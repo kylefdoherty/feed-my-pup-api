@@ -20,6 +20,9 @@ class Dog(models.Model):
   # this is good because then Allergy object can have more data such as:
     # causes, remedies, common breeds effected, etc.
 
+# class ZipCode - want a zipcode class using geodjango https://docs.djangoproject.com/en/1.7/ref/contrib/gis/model-api/
+  # belongs to UserShippingInfo
+  # on initial signup want to check if user is in service area
+  # and let them know if they aren't
 
-
-# usershippinginfo - zipcode, etc.
+# class UserShippingInfo

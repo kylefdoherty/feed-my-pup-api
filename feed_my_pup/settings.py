@@ -93,10 +93,16 @@ WSGI_APPLICATION = 'feed_my_pup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'feed_my_pup',
+       'USER': 'kyle',
+       'PASSWORD': '',
+       'HOST': 'localhost',
+       'PORT': '',
     }
 }
+
+
 
 
 # Password validation
