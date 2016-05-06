@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class DogBreed(models.Model):
@@ -12,8 +13,7 @@ class Dog(models.Model):
   weight = models.DecimalField(max_digits=5, decimal_places=2)
   body_composition = models.CharField(max_length=255)
   activity_level = models.CharField(max_length=255)
-
-  # owner = models.ForeignKey(User, on_delete=models.CASCADE) # automatically creates an index for foreign keys
+  user = models.ForeignKey(User, related_name="owner", on_delete=models.CASCADE, null=True, blank=True, default=0) # automatically creates an index for foreign keys
 
 # class Allergy -  probably create many_to_many relationship
   # i.e. dog can have many allergies and allergies can belong to many dogs

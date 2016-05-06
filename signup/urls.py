@@ -6,6 +6,7 @@ from signup import views
 urlpatterns = patterns('',
   url(r'^api/breeds$', views.DogBreedList.as_view()),
   url(r'^api/dogs$', views.DogList.as_view()),
+  url(r'^api/users$', views.UserList.as_view()),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
