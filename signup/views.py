@@ -14,41 +14,24 @@ class DogBreedList(APIView):
     serializer = DogBreedSerialzer(breeds, many=True)
     return Response(serializer.data)
 
-class DogList(APIView):
+class UserSignup(APIView):
   def post(self, request, format=None):
-    serializer = DogSerialzer(data=request.data)
-    if serializer.is_valid():
-      serializer.save()
-      return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # couldn't get a writable nested serializer to work
+    # for some reason it was saving the username as blank everytime
+    # event though it was coming in in the request correctly. If had
+    # more time would figure out how to drop into the serializer model that
+    # is saving the object and debug
 
-class UserList(APIView):
-  def post(self, request, format=None):
-    dog = get_object_or_404(Dog, pk=request.data["dog"]["dog_id"])
-    userdata = request.data["user"]
-    user = User.objects.create(username=userdata["email"], email=userdata["email"], password=userdata["password"])
-    dog.user = user
-    dog.save()
+    user_data = request.data["user"]
+    dog_data = request.data["dog"]
+    user = User.objects.create(email=user_data["email"], username=user_data["email"], password=user_data["password"])
+    dog = Dog.objects.create(name=dog_data["name"],
+                             age=dog_data["age"],
+                             gender=dog_data["gender"],
+                             breed=dog_data["breed"],
+                             weight=dog_data["weight"],
+                             body_composition=dog_data["body_composition"],
+                             activity_level=dog_data["activity_level"],
+                             user=user)
     serializer = UserSerializer(instance=user)
-
     return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
-
-
-
-# class SnippetList(APIView):
-#     """
-#     List all snippets, or create a new snippet.
-#     """
-#     def get(self, request, format=None):
-#         snippets = Snippet.objects.all()
-#         serializer = SnippetSerializer(snippets, many=True)
-#         return Response(serializer.data)
-
-#     def post(self, request, format=None):
-#         serializer = SnippetSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

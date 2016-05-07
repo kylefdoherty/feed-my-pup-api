@@ -16,7 +16,7 @@ class Dog(models.Model):
   weight = models.DecimalField(max_digits=5, decimal_places=2)
   body_composition = models.CharField(max_length=255)
   activity_level = models.CharField(max_length=255)
-  user = models.ForeignKey(User, related_name="owner", on_delete=models.CASCADE, null=True, blank=True, default=0) # automatically creates an index for foreign keys
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
